@@ -1,8 +1,7 @@
 clc;
 clear;
 close all;
-% addpath matlab2/StructureTensor_toolbox/code3D;
-addpath Matlab/Matlab #2/StructureTensor_toolbox/code3D;
+addpath matlab2/StructureTensor_toolbox/code3D;
 
 % Replace the following path with the actual path to your NIfTI file
 Hip_CT_nifti_file = '/autofs/space/aspasia_002/users/code/structens/tractography-testset/I58_hipct/484um_rotated/4bin_rotate_rescale_121.04um_I58.nii';
@@ -20,7 +19,7 @@ intensity = volume_data(1, 1, 1);
 % ConvInfo = ConvexHullCells3D(im, Thresh, dlt);
 
 %% %%%%%%%%%%%%%%%%%%%% Compute structural tensor 
-rho = 5; 
+rho = 10; 
 dlt = [1,1,1];
 EigInfo = coherence_orientation3D(volume_data, rho, dlt);
 disp(EigInfo);
@@ -33,7 +32,7 @@ disp(EigInfo);
 nii = x;
 nii.vol = EigInfo.w3;
 % Define the output file path for saving the tensor as a NIfTI file
-output_nifti_file = '/autofs/space/atropos_001/users/shruti/Github/Structtens/output/matlab-implementation.nii';
+output_nifti_file = '/autofs/space/atropos_001/users/shruti/Github/Structtens/output/rho10_sigma8.nii';
 
 MRIwrite(nii, output_nifti_file);
 

@@ -12,7 +12,7 @@ def save_tensor_arrays(filename, tensor_data):
     np.save(filename, tensor_data)
 
 # Replace 'your_file.nii' with the path to your NIfTI file
-# nifti_file = '/space/aspasia/2/users/code/structens/tractography-testset/I58_hipct/484um_rotated/4bin_rotate_rescale_121.04um_I58.nii'
+nifti_file = '/space/aspasia/2/users/code/structens/tractography-testset/I58_hipct/484um_rotated/4bin_rotate_rescale_121.04um_I58.nii'
 
 # Load NIfTI file
 img = nib.load(nifti_file)
@@ -35,7 +35,7 @@ val_cp, vec_cp = eig_special_3d(S_cp)
 vec_normalized = cp.asnumpy(vec_cp)
 
 # Normalize eigenvectors (if required)
-# vec_normalized /= np.linalg.norm(vec_normalized, axis=0, keepdims=True)
+vec_normalized /= np.linalg.norm(vec_normalized, axis=0, keepdims=True)
 
 # Ensure the shape of vec_normalized matches volume_shape + (3,)
 if vec_normalized.shape != (3, *volume.shape):
@@ -45,8 +45,8 @@ if vec_normalized.shape != (3, *volume.shape):
 vec_normalized_rgb = np.transpose(vec_normalized, (1, 2, 3, 0))
 
 # Save eigenvectors as a RGB NIfTI file
-# output_file = '/space/atropos/1/users/shruti/structtens/python-implementation'
-# nib.save(nib.Nifti1Image(vec_normalized_rgb.astype(np.float32), img.affine), output_file)
+output_file = '/space/atropos/1/users/shruti/Github/Structtens/output/python-implementation'
+nib.save(nib.Nifti1Image(vec_normalized_rgb.astype(np.float32), img.affine), output_file)
 
 # print(f"Eigenvectors saved as {output_file}")
 
