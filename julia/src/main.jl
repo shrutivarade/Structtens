@@ -1,20 +1,20 @@
-module script
+# module script
 
 using NIfTI
-using Images
+# using Images
 
-include("gaussian_kernel3D.jl")
-include("utilities.jl")
-include("convex_hull_cells3D.jl")
-include("coherence_orientation3D.jl")
-include("structure_tensor3D.jl")
+# include("gaussian_kernel3D.jl")
+# include("utilities.jl")
+# include("convex_hull_cells3D.jl")
+# include("coherence_orientation3D.jl")
+# include("structure_tensor3D.jl")
 
 # Load a NIfTI 3D image
 function load_image(file_path)
     nii = NIfTI.niread(file_path)
-    println(nii)
-    printtln(nii.data)
-    return nii.data 
+    # println(nii)
+    println(nii.header)
+    return nii.header 
 end
 
 # Main processing function
@@ -38,4 +38,4 @@ end
 image_path = "/autofs/space/aspasia_002/users/code/structens/tractography-testset/I58_hipct/484um_rotated/4bin_rotate_rescale_121.04um_I58.nii"
 process_image(image_path)
 
-end
+# end
